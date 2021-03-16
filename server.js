@@ -60,19 +60,19 @@ myDB(async client => {
   io.on('connection', socket => {
     ++currentUsers
     io.emit('user', {
-      name: socket.request.user.name,
+      name: socket.request.user.username,
       currentUsers,
       connected: true
     });
     socket.on('chat message', message => {
-      io.emit('chat message', {name: socket.request.user.name, message})
+      io.emit('chat message', {name: socket.request.user.username, message})
     })
-    console.log('user ' + socket.request.user.name + ' connected');
+    console.log('user ' + socket.request.user.username + ' connected');
 
     socket.on('disconnect', () => {
       --currentUsers
       io.emit('user', {
-        name: socket.request.user.name,
+        name: socket.request.user.username,
         currentUsers,
         connected: false
       });

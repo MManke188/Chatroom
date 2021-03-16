@@ -3,6 +3,7 @@ $(document).ready(function () {
 
   socket.on('user', data => {
     $('#num-users').text(data.currentUsers + ' users online');
+    console.log("Data: ", data)
     let message =
       data.name +
       (data.connected ? ' has joined the chat.' : ' has left the chat.');
